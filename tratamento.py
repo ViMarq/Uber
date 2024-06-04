@@ -10,7 +10,7 @@ import time
 from IPython.display import display
 
 # Carregando a base
-uber = pd.read_csv("UBER.csv", sep=',')
+uber = pd.read_csv("dataset/Uber.csv", sep=',')
 
 # Removendo valores nulos e valores iguais a 0
 uber = uber.dropna()
@@ -35,5 +35,29 @@ for index, row in uber.iterrows():
     uber.at[index, 'ano'] = data.year
 uber.drop(['pickup_datetime'], axis=1, inplace=True)
 
+# Acesando os valores da biblioteca uber pela colunas e linhas. 
+# Para index sao retornado todos os valores que estao em sua respectiva coluna baseada no nome pre definido no .csv
+# Para row sao retornado todos os valores de um linha baseado na sua numeracao pre definida pelo panda. 
+# Ao acessar com ['column_name'] retornamos o valor especifico da linha e coluna.   
+for index, row in uber.iterrows():
+    if (row['pickup_longitude'] < -180 or row['pickup_longitude'] > 180):
+        row['pickup_longitude'] = row['pickup_longitude']/10
+    
+    if (row['dropoff_longitude'] < -180 or row['dropoff_longitude'] > 180):
+        row['dropoff_longitude'] = row['dropoff_longitude']/10
+
+    if (row['pickup_latitude'] < -90 or row['pickup_latitude'] > 90):
+        row['pickup_latitude'] = row['pickup_latitude']/10
+    
+    if (row['dropoff_latitude'] < -90 or row['dropoff_latitude'] > 90):
+        row['dropoff_latitude'] = row['dropoff_latitude']/10
+
+    uber.at[index, 'pickup_longitude'] = row['pickup_longitude']
+    uber.at[index, 'dropoff_longitude'] = row['dropoff_longitude']
+    uber.at[index, 'pickup_latitude'] = row['pickup_latitude']
+    uber.at[index, 'dropoff_latitude'] = row['dropoff_latitude']
+
+
+
 # Gerando arquivo .csv da base tratada
-uber.to_csv('UBER_TRATADO.csv', index=False)
+uber.to_csv('dataset/UBER_TRATADO.csv', index=False)
