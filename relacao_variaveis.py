@@ -33,8 +33,6 @@ for column,row in uber.iterrows():
     latitude_fim = row['dropoff_latitude']
     partida = (latitude_ini,longitude_ini)
     destino = (latitude_fim,longitude_fim)
-    result = haversine(partida,destino)
-
     try:
         result = haversine(partida,destino)
         uber.at[column, 'distancia'] = f'{result:.3f}'
