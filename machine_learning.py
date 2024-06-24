@@ -13,7 +13,7 @@ from sklearn import tree
 import graphviz
 
 
-# Árvore de decisão
+# Modelo de regressão linear
 
 # Carregando a base
 uber = pd.read_csv('dataset/UBER_TRATADO.csv',sep=',')
