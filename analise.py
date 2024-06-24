@@ -177,7 +177,7 @@ plt.show()
 
 # Correlação em um único plot
 
-sns.pairplot(uber, diag_kws={'edgecolor':'k'}, plot_kws={'alpha':0.5, 'edgecolor':'k'})
+# sns.pairplot(uber, diag_kws={'edgecolor':'k'}, plot_kws={'alpha':0.5, 'edgecolor':'k'})
 
 
 # Boxplot mostrando a distribuição de dados entre fare_amount, distancia, passenger_count, mes de uma forma resumida e visual
@@ -192,4 +192,12 @@ plt.boxplot(preco, vert = 0, patch_artist = False)
 # plt.xlabel('Preço')
 # plt.ylabel('Preço')
 plt.title('Gráfico de comparação entre preço, distancia, número de passageiros e mês')
+plt.show()
+
+# Analise de correlação
+# Matriz de correlação
+
+plt.figure(figsize = (7,7))
+sns.heatmap(uber.corr("spearman"), annot = True, cmap = "YlGnBu")
+plt.title("Mapa de Correlação", fontsize = 15)
 plt.show()
