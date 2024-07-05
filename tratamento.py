@@ -13,7 +13,7 @@ from haversine import haversine
 
 # Carregando a base
 
-uber = pd.read_csv("dataset/Uber.csv", sep=',')
+uber = pd.read_csv("dataset/taxi_data_brazil_10000_updated.csv", sep=',')
 
 # Removendo valores nulos e valores iguais a 0
 

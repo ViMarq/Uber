@@ -4,6 +4,8 @@ from sklearn.model_selection import train_test_split
 from geopy.geocoders import Nominatim
 from haversine import haversine
 import datetime
+import forex_python
+from forex_python.converter import CurrencyRates
 
 # Modelo de regressão linear
 
@@ -40,7 +42,7 @@ for i in range(3):
     except:
         print("Informações de endereço incorretas. Tente novamente")
 
-# Atribui as variaver de latitude e longitude do local origem
+# Atribui as variaveis de latitude e longitude do local origem
 latitude_partida = location_partida.latitude
 longitude_partida = location_partida.longitude
 
@@ -59,7 +61,7 @@ for i in range(3):
     except:
         print("Informações de endereço incorretas. Tente novamente")
 
-# Atribui as variaver de latitude e longitude do local origem
+# Atribui as variaveis de latitude e longitude do local origem
 latitude_destino = location_destino.latitude
 longitude_destino = location_destino.longitude
 
@@ -76,10 +78,10 @@ try:
 except:
     raise Exception("Não foi possivel obter a distancia entre os dois pontos. ")
 
-print(f"A distancia do ponto de parida e o destino são de {distancia}KM")
+print(f"A distancia do ponto de partida e o destino são de {distancia}KM")
 
-#Pega o mês de refenrecia do computador ou solicita um mês ao usuario.
-result = input("Deseja inserir um mês para viajar ou ultilizar o mês atual ? (S/N) ").upper()
+#Pega o mês de referencia do computador ou solicita um mês ao usuario.
+result = input("Deseja inserir um mês para viajar ou utilizar o mês atual? (S/N) ").upper()
 
 print (result)
 match result: 
@@ -96,7 +98,7 @@ match result:
           
 print(f"O mês escolhido para realizar a viagem é o {mes}")
 
-# Pega a quantidade de pessoas que iram participar desta viagem.
+# Pega a quantidade de pessoas que irão participar desta viagem.
 # O processo fica em loop até o usuario digitar uma quantidade valida. 
 passageiros = 0
 while passageiros == 0:
@@ -105,11 +107,18 @@ while passageiros == 0:
         print("Quantidade de passageiros escolhida é inferior a 1 passageiro ou superior a 4 passageiros.")
         passageiros = 0
 
-print(f"A quantidade de passageios desta viagem é de {passageiros} pessoas")
+print(f"A quantidade de passageios desta viagem é de {passageiros} pessoa(s)")
 
 
 # Define a biblioteca de dados para IA calcular o preço justo para a corrida. 
 parametros_uber = [distancia,mes,passageiros]
-# usar modelo de predictição.
+
+# Usar modelo de predição.
 prev_modelo_preco = modelo.predict([parametros_uber])
-print(prev_modelo_preco)
+
+# Varrer o array para devolver somente o valor de dentro
+for p in prev_modelo_preco:
+    prev_modelo_preco = CurrencyRates().convert('USD', 'BRL', p)
+    print(prev_modelo_preco)
+
+# print(f'O preço sugerido para essa corrida é de R${prev_modelo_preco}')
