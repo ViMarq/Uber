@@ -14,7 +14,7 @@ from currency_converter import CurrencyConverter
 
 # Carregando a base
 
-uber = pd.read_csv("dataset/Uber.csv", sep=',')
+uber = pd.read_csv("dataset/taxi_data_brazil_10000_distance_based.csv", sep=',')
 
 # Removendo valores nulos e valores iguais a 0
 
@@ -40,6 +40,8 @@ for index, row in uber.iterrows():
     uber.at[index, 'dia'] = data.day
     uber.at[index, 'mes'] = data.month
     uber.at[index, 'ano'] = data.year
+    uber.at[index, 'hora'] = data.hour
+    uber.at[index, 'minuto'] = data.minute
 uber.drop(['pickup_datetime'], axis=1, inplace=True)
 
 # Acesando os valores da biblioteca uber pela colunas e linhas. 
@@ -98,7 +100,7 @@ for column,row in uber.iterrows():
 real_base = CurrencyConverter().convert(1, 'USD', 'BRL')
 print(real_base)
 for column, row in uber.iterrows():
-    uber.at[column, 'fare_amount'] = row['fare_amount'] * real_base
+    uber.at[column, 'fare_amount'] = round(row['fare_amount'] * real_base,2)
 
 # Gerando arquivo .csv da base tratada
 uber.to_csv('dataset/UBER_TRATADO.csv', index=False)
