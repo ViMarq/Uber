@@ -4,8 +4,7 @@ from sklearn.model_selection import train_test_split
 from geopy.geocoders import Nominatim
 from haversine import haversine
 import datetime
-import forex_python
-from forex_python.converter import CurrencyRates
+from currency_converter import CurrencyConverter
 
 # Modelo de regressão linear
 
@@ -118,7 +117,6 @@ prev_modelo_preco = modelo.predict([parametros_uber])
 
 # Varrer o array para devolver somente o valor de dentro
 for p in prev_modelo_preco:
-    prev_modelo_preco = CurrencyRates().convert('USD', 'BRL', p)
-    print(prev_modelo_preco)
+    prev_modelo_preco = p
 
-# print(f'O preço sugerido para essa corrida é de R${prev_modelo_preco}')
+print(f'O preço sugerido para esta corrida é de R${prev_modelo_preco:.2f}')

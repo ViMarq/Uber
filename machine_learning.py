@@ -13,9 +13,6 @@ from sklearn import tree
 import graphviz
 import seaborn as sns
 
-from teste import evaluate_metrics
-
-
 # Modelo de regressão linear
 
 # Carregando a base

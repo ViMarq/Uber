@@ -19,70 +19,70 @@ print(uber.head(5))
 # Calculo de medidas de tendencia central
 
 m_fare_amount = uber['fare_amount'].mean()
-print(f'M = {m_fare_amount:.2f}')
+print(f'M preço  = {m_fare_amount:.2f}')
 
 m_distancia = uber['distancia'].mean()
-print(f'M = {m_distancia:.3f}')
+print(f'M distancia = {m_distancia:.3f}')
 
 m_distancia = uber['passenger_count'].mean()
-print(f'M = {m_distancia:.3f}')
+print(f'M passageiros = {m_distancia:.3f}')
 
 m_distancia = uber['mes'].mean()
-print(f'M = {m_distancia:.3f}')
+print(f'M mes = {m_distancia:.3f}')
 
 
 med_fare_amount = uber['fare_amount'].median()
-print(f'Med = {med_fare_amount:.2f}')
+print(f'Med preço = {med_fare_amount:.2f}')
 
 med_distancia = uber['distancia'].median()
-print(f'Med = {med_distancia:.3f}')
+print(f'Med distancia = {med_distancia:.3f}')
 
 med_fare_amount = uber['passenger_count'].median()
-print(f'Med = {med_fare_amount:.2f}')
+print(f'Med passageiros = {med_fare_amount:.2f}')
 
 med_fare_amount = uber['mes'].median()
-print(f'Med = {med_fare_amount:.2f}')
+print(f'Med mes = {med_fare_amount:.2f}')
 
 
 mo_fare_amount = uber['fare_amount'].mode().values
-print(f'Mo = {mo_fare_amount}')
+print(f'Mo preço = {mo_fare_amount}')
 
 mo_distancia = uber['distancia'].mode().values
-print(f'Mo = {mo_distancia}')
+print(f'Mo distancia = {mo_distancia}')
 
 mo_distancia = uber['passenger_count'].mode().values
-print(f'Mo = {mo_distancia}')
+print(f'Mo passageiros = {mo_distancia}')
 
 mo_distancia = uber['mes'].mode().values
-print(f'Mo = {mo_distancia}')
+print(f'Mo mes = {mo_distancia}')
 
 
 # Calculo de medidas de dispersão
 
 ampl_fare_amount = uber['fare_amount'].max() - uber['fare_amount'].min()
-print(f'Ampl = {ampl_fare_amount}') #Amplitude
+print(f'Ampl preço = {ampl_fare_amount}') #Amplitude
 
 ampl_distancia = uber['distancia'].max() - uber['distancia'].min()
-print(f'Ampl = {ampl_distancia}') #Amplitude
+print(f'Ampl distancia = {ampl_distancia}') #Amplitude
 
 ampl_distancia = uber['passenger_count'].max() - uber['passenger_count'].min()
-print(f'Ampl = {ampl_distancia}') #Amplitude
+print(f'Ampl passageiros = {ampl_distancia}') #Amplitude
 
 ampl_distancia = uber['mes'].max() - uber['mes'].min()
-print(f'Ampl = {ampl_distancia}') #Amplitude
+print(f'Ampl mes = {ampl_distancia}') #Amplitude
 
 
 var_fare_amount = uber['fare_amount'].var()
-print(f'Var = {var_fare_amount}')
+print(f'Var preço = {var_fare_amount}')
 
 var_distancia = uber['distancia'].var()
-print(f'Var = {var_distancia}')
+print(f'Var distancia = {var_distancia}')
 
 var_distancia = uber['passenger_count'].var()
-print(f'Var = {var_distancia}')
+print(f'Var passageiros = {var_distancia}')
 
 var_distancia = uber['mes'].var()
-print(f'Var = {var_distancia}')
+print(f'Var mes = {var_distancia}')
 
 
 
@@ -99,9 +99,9 @@ def corr(x, y):
     return (x_m * y_m).sum() / (n - 1)
 
 
-print(corr(uber['fare_amount'], uber['distancia']))
-print(corr(uber['fare_amount'], uber['passenger_count']))
-print(corr(uber['fare_amount'], uber['mes']))
+print(f'Corr preço e distancia {corr(uber['fare_amount'], uber['distancia'])}')
+print(f'Corr preço e passageiros {corr(uber['fare_amount'], uber['passenger_count'])}')
+print(f'Corr preço e mes {corr(uber['fare_amount'], uber['mes'])}')
 
 
 # Criando uma função de covariância para calcular a relação de forma não padronizada, dentro do intervalo - infinito a + infinito, para verificar não só a força como também a relação linear entre duas variáveis  
@@ -112,9 +112,9 @@ def covariance(x, y):
     y_m = y - np.mean(y)
     return (x_m * y_m).sum() / (n - 1)
 
-print(covariance(uber['fare_amount'], uber['distancia']))
-print(covariance(uber['fare_amount'], uber['passenger_count']))
-print(covariance(uber['fare_amount'], uber['mes']))
+print(f'Cov preço e distancia = {covariance(uber['fare_amount'], uber['distancia'])}')
+print(f'Cov preço e passageiros = {covariance(uber['fare_amount'], uber['passenger_count'])}')
+print(f'Cov preço e mes = {covariance(uber['fare_amount'], uber['mes'])}')
 
 
 # Comparação entre variavel alvo e distancia

@@ -10,10 +10,11 @@ import datetime
 import time
 from IPython.display import display
 from haversine import haversine
+from currency_converter import CurrencyConverter
 
 # Carregando a base
 
-uber = pd.read_csv("dataset/taxi_data_brazil_10000_updated.csv", sep=',')
+uber = pd.read_csv("dataset/Uber.csv", sep=',')
 
 # Removendo valores nulos e valores iguais a 0
 
@@ -93,6 +94,11 @@ for column,row in uber.iterrows():
     if row['fare_amount'] < 0:
         uber.at[column, 'fare_amount'] = row['fare_amount'] * (-1)
 
+# Convertendo Dolar em Real
+real_base = CurrencyConverter().convert(1, 'USD', 'BRL')
+print(real_base)
+for column, row in uber.iterrows():
+    uber.at[column, 'fare_amount'] = row['fare_amount'] * real_base
 
 # Gerando arquivo .csv da base tratada
 uber.to_csv('dataset/UBER_TRATADO.csv', index=False)
