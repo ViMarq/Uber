@@ -14,7 +14,7 @@ from currency_converter import CurrencyConverter
 
 # Carregando a base
 
-uber = pd.read_csv("dataset/taxi_data_brazil_10000_distance_based.csv", sep=',')
+uber = pd.read_csv("dataset/Uber copy.csv", sep=',')
 
 # Removendo valores nulos e valores iguais a 0
 

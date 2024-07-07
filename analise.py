@@ -99,9 +99,9 @@ def corr(x, y):
     return (x_m * y_m).sum() / (n - 1)
 
 
-print(f'Corr preço e distancia {corr(uber['fare_amount'], uber['distancia'])}')
-print(f'Corr preço e passageiros {corr(uber['fare_amount'], uber['passenger_count'])}')
-print(f'Corr preço e mes {corr(uber['fare_amount'], uber['mes'])}')
+print(f'Corr preço e distancia = {corr(uber['fare_amount'], uber['distancia'])}')
+print(f'Corr preço e passageiros = {corr(uber['fare_amount'], uber['passenger_count'])}')
+print(f'Corr preço e mes = {corr(uber['fare_amount'], uber['mes'])}')
 
 
 # Criando uma função de covariância para calcular a relação de forma não padronizada, dentro do intervalo - infinito a + infinito, para verificar não só a força como também a relação linear entre duas variáveis  
@@ -130,12 +130,32 @@ plt.show()
 # Histograma
 
 plt.hist(uber['fare_amount'], bins=20)
-plt.title('Qtd. de preços mais cobrados')
+plt.title('Preço mais cobrado')
 plt.xlabel('Preço')
 plt.ylabel('Frequência')
 plt.show()
 
+# Comparação entre variavel alvo e hora
 
+plt.scatter(uber['hora'], uber['fare_amount'], color='blue', s=2)
+plt.title('Preço x hora')
+plt.xlabel('Hora')
+plt.ylabel('Preço')
+plt.show()
+
+plt.hist(uber['hora'], bins=20)
+plt.title('Horário que mais solicitam corridas')
+plt.xlabel('Hora')
+plt.ylabel('Frequência')
+plt.show()
+
+
+index_hora=[]
+for i in range(0, 23):
+    index_hora.append(i)
+df = pd.DataFrame(uber['hora'], index=index_hora)
+lines = df.plot.line()
+plt.show()
 
 # Comparação entre variavel alvo e quantidade de passageiros
 
@@ -169,7 +189,7 @@ plt.show()
 
 # Histograma
 
-plt.hist(uber['mes'], bins=20)
+plt.hist(uber['mes'], bins=40)
 plt.title('Qtd. de meses mais solicitados')
 plt.xlabel('Meses')
 plt.ylabel('Frequência')

@@ -38,11 +38,12 @@ modelo = DecisionTreeRegressor(max_depth=3)
 modelo.fit(X_train, y_train)
 y_pred = modelo.predict(X_test)
 
+# Ordenando por ordem crescente de preço em relação a distancia
+print(uber[['fare_amount','distancia']].head(10).sort_values(by='fare_amount'))
+
 # Determinacao do R² 
 r2 = r2_score(y_test, y_pred)
 print('Coeficiente de determinação (R²):', r2)
-
-print(uber[['fare_amount','distancia']].head(10).sort_values(by='fare_amount'))
 
 # Calculando o quadrado da diferença entre os valores das variáveis observada e a predita do modelo
 # OBS: acc = accuracy_score(y_test, y_pred) -->> Espera um valor booleano entre 0 e 1 e como os preço são número continuos não tem como usar acurácia.
