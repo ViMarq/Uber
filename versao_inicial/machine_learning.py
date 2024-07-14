@@ -58,7 +58,7 @@ print(f'MAPE = {mape}')
 mae = mean_absolute_error(y_test, y_pred)
 print(f'MAE = {mae}')
 
-# Calcula da raiz do erro quadrático cédio
+# Calcula da raiz do erro quadrático médio
 rmse  = root_mean_squared_error(y_test, y_pred)
 print(f'RMSE = {rmse}')
 
